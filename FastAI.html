@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Search</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<script>
+$(".checkbox-menu").on("change", "input[type='checkbox']", function() {
+  $(this).closest("li").toggleClass("active", this.checked);
+});
+
+$(document).on('click', '.dropdown-menu', function (e) {
+  e.stopPropagation();
+});
+
+$(document).on('click', '.dropdown-checkbox', function (e) {
+  var num_selected_span = $(this).closest(".dropdown").find(".dropdown_selected_cnt");
+  var num_selected = parseInt(num_selected_span.text());
+  if (this.checked) { num_selected += 1; } else { num_selected -= 1; }
+  if (num_selected == 0)
+  {
+    num_selected_span.css('visibility', 'hidden');
+  }
+  else
+  {
+    num_selected_span.css('visibility', 'visible');
+  }
+  num_selected_span.text(num_selected);
+});
+
+$( document ).ready(function() {
+  console.log( "ready!" );
+  $('input:checkbox').prop('checked', false);
+});
+</script>
+
+<style>
+body {
+  padding: 15px;
+}
+
+.checkbox-menu li label {
+    display: block;
+    padding: 3px 10px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    margin:0;
+    transition: background-color .4s ease;
+}
+.checkbox-menu li input {
+    margin: 0px 5px;
+    top: 2px;
+    position: relative;
+}
+
+.checkbox-menu li.active label {
+    background-color: #cbcbff;
+    font-weight:bold;
+}
+
+.checkbox-menu li label:hover,
+.checkbox-menu li label:focus {
+    background-color: #f5f5f5;
+}
+
+.checkbox-menu li.active label:hover,
+.checkbox-menu li.active label:focus {
+    background-color: #b8b8ff;
+}
+
+label.selected  {
+  background-color: #007bff;
+  color: white;
+}
+
+span.selected  {
+  color: white;
+}
+
+.competition-title {
+  color: rgb(32, 33, 36);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.competition-brief {
+  color: rgb(95, 99, 104);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+</style>
+
+<body>
+
+<div class="text-center">
+
+
+<span class="dropdown">
+  <button class="btn  btn-primary  dropdown-toggle" type="button" 
+          id="dropdownGroup" data-toggle="dropdown" 
+          aria-haspopup="true" aria-expanded="true">
+    <b>Tools</b>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownGroup">
+    
+    <li>
+      <a href="./Keras" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Keras</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./XGBoost" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">XGBoost</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Pytorch" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Pytorch</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./LightGBM" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">LightGBM</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./FastAI" style="text-decoration: none;">
+        <label class=" selected " style="cursor: pointer;">
+          <span class=" selected ">FastAI</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Tensorflow" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Tensorflow</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./H2O" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">H2O</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Catboost" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Catboost</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./NLTK" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">NLTK</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./AutoML" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">AutoML</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./sklearn" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">sklearn</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Prophet" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Prophet</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Python" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Python</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./R" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">R</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./OpenCV" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">OpenCV</span>
+        </label>
+      </a>
+    </li>
+    
+  </ul>
+</span>
+
+<span class="dropdown">
+  <button class="btn  btn-default  dropdown-toggle" type="button" 
+          id="dropdownGroup" data-toggle="dropdown" 
+          aria-haspopup="true" aria-expanded="true">
+    <b>NN Arch</b>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownGroup">
+    
+    <li>
+      <a href="./CNN" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">CNN</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./RNN" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">RNN</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./LSTM" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">LSTM</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Transformer" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Transformer</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./MobileNet" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">MobileNet</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Xception" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Xception</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Autoencoder" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Autoencoder</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./GAN" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">GAN</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./RCNN" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">RCNN</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./UNet" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">UNet</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./ResNet" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">ResNet</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./VGG" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">VGG</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./EfficientNet" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">EfficientNet</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Densenet" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Densenet</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Inception" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Inception</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./YOLO" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">YOLO</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./ResNeXT" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">ResNeXT</span>
+        </label>
+      </a>
+    </li>
+    
+  </ul>
+</span>
+
+<span class="dropdown">
+  <button class="btn  btn-default  dropdown-toggle" type="button" 
+          id="dropdownGroup" data-toggle="dropdown" 
+          aria-haspopup="true" aria-expanded="true">
+    <b>ML Model</b>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownGroup">
+    
+    <li>
+      <a href="./Random Forest" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Random Forest</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Logistic Regression" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Logistic Regression</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Gradient Boosting" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Gradient Boosting</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./PCA" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">PCA</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./SVM" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">SVM</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./kNN" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">kNN</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./TfIdf" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">TfIdf</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./ARIMA" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">ARIMA</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Word2Vec" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Word2Vec</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./TSNE" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">TSNE</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./GloVe" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">GloVe</span>
+        </label>
+      </a>
+    </li>
+    
+  </ul>
+</span>
+
+<span class="dropdown">
+  <button class="btn  btn-default  dropdown-toggle" type="button" 
+          id="dropdownGroup" data-toggle="dropdown" 
+          aria-haspopup="true" aria-expanded="true">
+    <b>Technique</b>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownGroup">
+    
+    <li>
+      <a href="./Ensembling" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Ensembling</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Augmentation" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Augmentation</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Preprocessing" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Preprocessing</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Visualization" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Visualization</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./EDA" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">EDA</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Feature Engineering" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Feature Engineering</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Fine Tuning" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Fine Tuning</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Transfer Learning" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Transfer Learning</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Optimization" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Optimization</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Clustering" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Clustering</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Metric Learning" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Metric Learning</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Cleaning" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Cleaning</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Embeddings" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Embeddings</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Bayesian" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Bayesian</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Grid Search" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Grid Search</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Denoising" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Denoising</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Validation" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Validation</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Genetic Algorithm" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Genetic Algorithm</span>
+        </label>
+      </a>
+    </li>
+    
+  </ul>
+</span>
+
+<span class="dropdown">
+  <button class="btn  btn-default  dropdown-toggle" type="button" 
+          id="dropdownGroup" data-toggle="dropdown" 
+          aria-haspopup="true" aria-expanded="true">
+    <b>Task Domain</b>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownGroup">
+    
+    <li>
+      <a href="./Classification" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Classification</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Regression" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Regression</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Text" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Text</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Detection" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Detection</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Segmentation" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Segmentation</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./CV" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">CV</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Time Series" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Time Series</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Forecasting" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Forecasting</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Sentiment Analysis" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Sentiment Analysis</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Search" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Search</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Recognition" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Recognition</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Audio" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Audio</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./3D" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">3D</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./2D" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">2D</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Face" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Face</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Adversarial" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Adversarial</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Similarity" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Similarity</span>
+        </label>
+      </a>
+    </li>
+    
+  </ul>
+</span>
+
+<span class="dropdown">
+  <button class="btn  btn-default  dropdown-toggle" type="button" 
+          id="dropdownGroup" data-toggle="dropdown" 
+          aria-haspopup="true" aria-expanded="true">
+    <b>Misc</b>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownGroup">
+    
+    <li>
+      <a href="./GPU" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">GPU</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./TPU" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">TPU</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Leak" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Leak</span>
+        </label>
+      </a>
+    </li>
+    
+  </ul>
+</span>
+
+<span class="dropdown">
+  <button class="btn  btn-default  dropdown-toggle" type="button" 
+          id="dropdownGroup" data-toggle="dropdown" 
+          aria-haspopup="true" aria-expanded="true">
+    <b>Metrics</b>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownGroup">
+    
+    <li>
+      <a href="./MSE" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">MSE</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./AUC" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">AUC</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./NLL" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">NLL</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./mAP" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">mAP</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Accuracy" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Accuracy</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./F1" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">F1</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./IoU" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">IoU</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Cohen Kappa" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Cohen Kappa</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Traveling Santa" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Traveling Santa</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Gini" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Gini</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./NDCG@k" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">NDCG@k</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Edit Distance" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Edit Distance</span>
+        </label>
+      </a>
+    </li>
+    
+    <li>
+      <a href="./Custom" style="text-decoration: none;">
+        <label class="" style="cursor: pointer;">
+          <span class="">Custom</span>
+        </label>
+      </a>
+    </li>
+    
+  </ul>
+</span>
+
+
+
+
+</div>
+
+
+<div class="container">
+  <h1>
+      <span class="badge badge-info"> FastAI </span>
+  </h1>
+
+  <div class="list-group">
+    
+    <a href="https://www.kaggle.com/c/rsna-intracranial-hemorrhage-detection" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/13451/logos/thumb76_76.png?t=2019-08-26-19-58-36"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">RSNA Intracranial Hemorrhage Detection</div>
+          <div class="competition-brief">Identify acute intracranial hemorrhage and its subtypes</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:100%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/imet-2019-fgvc6" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/13251/logos/thumb76_76.png?t=2019-03-14-16-06-39"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">iMet Collection 2019 - FGVC6</div>
+          <div class="competition-brief">Recognize artwork attributes from The Metropolitan Museum of Art</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:75%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/siim-acr-pneumothorax-segmentation" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/14652/logos/thumb76_76.png?t=2019-05-15-19-37-10"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">SIIM-ACR Pneumothorax Segmentation</div>
+          <div class="competition-brief">Identify Pneumothorax disease in chest x-rays </div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:67%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/aerial-cactus-identification" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/13435/logos/thumb76_76.png?t=2019-03-07-17-33-36"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Aerial Cactus Identification</div>
+          <div class="competition-brief">Determine whether an image contains a columnar cactus</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:65%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/sentiment-analysis-on-movie-reviews" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/3810/logos/thumb76_76.png"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Sentiment Analysis on Movie Reviews</div>
+          <div class="competition-brief">Classify the sentiment of sentences from the Rotten Tomatoes dataset</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:64%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/histopathologic-cancer-detection" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/11848/logos/thumb76_76.png?t=2018-11-15-01-53-05"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Histopathologic Cancer Detection</div>
+          <div class="competition-brief">Identify metastatic tissue in histopathologic scans of lymph node sections</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:55%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/3364/logos/thumb76_76.png"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Challenges in Representation Learning: Facial Expression Recognition Challenge</div>
+          <div class="competition-brief">Learn facial expressions from an image</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:53%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/imaterialist-fashion-2019-FGVC6" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/13032/logos/thumb76_76.png?t=2019-04-24-14-20-59"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">iMaterialist (Fashion) 2019 at FGVC6 </div>
+          <div class="competition-brief">Fine-grained segmentation task for fashion and apparel</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:52%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/imet-2020-fgvc7" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/18626/logos/thumb76_76.png?t=2020-03-13-01-41-16"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">iMet Collection 2020 - FGVC7</div>
+          <div class="competition-brief">Recognize artwork attributes from The Metropolitan Museum of Art</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:48%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/bluebook-for-bulldozers" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/3316/logos/thumb76_76.png"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Blue Book for Bulldozers</div>
+          <div class="competition-brief">Predict the auction sale price for a piece of heavy equipment to create a &#34;blue book&#34; for bulldozers.</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:44%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/iwildcam-2019-fgvc6" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/12961/logos/thumb76_76.png?t=2019-03-26-14-47-39"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">iWildCam 2019 - FGVC6</div>
+          <div class="competition-brief">Categorize animals in the wild</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:42%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/recursion-cellular-image-classification" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/14420/logos/thumb76_76.png?t=2019-06-26-02-51-45"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Recursion Cellular Image Classification</div>
+          <div class="competition-brief">CellSignal: Disentangling biological signal from experimental noise in cellular images</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:38%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/iwildcam-2020-fgvc7" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/18294/logos/thumb76_76.png?t=2020-01-12-18-16-58"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">iWildCam 2020 - FGVC7</div>
+          <div class="competition-brief">Categorize animals in the wild</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:37%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/facial-keypoints-detection" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/3486/logos/thumb76_76.png"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Facial Keypoints Detection</div>
+          <div class="competition-brief">Detect the location of keypoints on face images</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:36%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/12500/logos/thumb76_76.png?t=2019-03-13-21-51-14"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Jigsaw Unintended Bias in Toxicity Classification</div>
+          <div class="competition-brief">Detect toxicity across a diverse range of conversations</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:35%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/dog-breed-identification" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/7327/logos/thumb76_76.png"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Dog Breed Identification</div>
+          <div class="competition-brief">Determine the breed of a dog in an image</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:29%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/5441/logos/thumb76_76.png"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Dogs vs. Cats Redux: Kernels Edition</div>
+          <div class="competition-brief">Distinguish images of dogs from cats</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:27%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/state-farm-distracted-driver-detection" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/5048/logos/thumb76_76.png"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">State Farm Distracted Driver Detection</div>
+          <div class="competition-brief">Can computer vision spot distracted drivers?</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:21%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/ultrasound-nerve-segmentation" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/5144/logos/thumb76_76.png"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Ultrasound Nerve Segmentation</div>
+          <div class="competition-brief">Identify nerve structures in ultrasound images of the neck</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:21%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/plant-pathology-2020-fgvc7" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/18648/logos/thumb76_76.png?t=2020-02-20-14-37-16"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Plant Pathology 2020 - FGVC7</div>
+          <div class="competition-brief">Identify the category of foliar diseases in apple trees</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:19%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/humpback-whale-identification" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/6961/logos/thumb76_76.png"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Humpback Whale Identification</div>
+          <div class="competition-brief">Can you identify a whale by its tail?</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:18%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/Kannada-MNIST" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/16017/logos/thumb76_76.png?t=2019-09-11-17-07-25"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Kannada MNIST</div>
+          <div class="competition-brief">MNIST like datatset for Kannada handwritten digits</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:18%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/aptos2019-blindness-detection" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/14774/logos/thumb76_76.png?t=2019-06-24-18-15-40"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">APTOS 2019 Blindness Detection</div>
+          <div class="competition-brief">Detect diabetic retinopathy to stop blindness before it&#39;s too late </div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:18%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/gendered-pronoun-resolution" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/12797/logos/thumb76_76.png?t=2019-02-01-18-57-08"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Gendered Pronoun Resolution</div>
+          <div class="competition-brief">Pair pronouns to their correct entities</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:13%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/google-quest-challenge" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/7968/logos/thumb76_76.png?t=2017-12-01-22-32-31"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Google QUEST Q&amp;A Labeling</div>
+          <div class="competition-brief">Improving automated understanding of complex question answer content</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:9%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/understanding_cloud_organization" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/13333/logos/thumb76_76.png?t=2019-06-07-19-19-14"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Understanding Clouds from Satellite Images</div>
+          <div class="competition-brief">Can you classify cloud structures from satellites? </div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:7%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/mens-machine-learning-competition-2019" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/11999/logos/thumb76_76.png?t=2019-01-31-20-33-49"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Google Cloud &amp; NCAA® ML Competition 2019-Men&#39;s</div>
+          <div class="competition-brief">Apply Machine Learning to NCAA® March Madness®</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:7%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/human-protein-atlas-image-classification" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/10418/logos/thumb76_76.png?t=2018-10-01-17-20-44"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Human Protein Atlas Image Classification</div>
+          <div class="competition-brief">Classify subcellular protein patterns in human cells</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:7%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/freesound-audio-tagging" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/8900/logos/thumb76_76.png?t=2018-03-18-23-22-58"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Freesound General-Purpose Audio Tagging Challenge</div>
+          <div class="competition-brief">Can you automatically recognize sounds from a wide range of real-world environments?</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:7%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/statoil-iceberg-classifier-challenge" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/7380/logos/thumb76_76.png"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Statoil/C-CORE Iceberg Classifier Challenge</div>
+          <div class="competition-brief">Ship or iceberg, can you decide from space?</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:6%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/denoising-dirty-documents" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/4406/logos/thumb76_76.png"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Denoising Dirty Documents</div>
+          <div class="competition-brief">Remove noise from printed text</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:6%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/quickdraw-doodle-recognition" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/10200/logos/thumb76_76.png?t=2018-09-26-18-07-46"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Quick, Draw! Doodle Recognition Challenge</div>
+          <div class="competition-brief">How accurately can you identify a doodle?</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:5%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/prudential-life-insurance-assessment" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/4699/logos/thumb76_76.png"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Prudential Life Insurance Assessment</div>
+          <div class="competition-brief">Can you make buying life insurance easier?</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:5%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/plant-seedlings-classification" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/7880/logos/thumb76_76.png?t=2017-11-21-19-54-47"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Plant Seedlings Classification</div>
+          <div class="competition-brief">Determine the species of a seedling from an image</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:3%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/cat-in-the-dat-ii" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/17000/logos/thumb76_76.png?t=2020-01-06-16-38-13"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Categorical Feature Encoding Challenge II</div>
+          <div class="competition-brief">Binary classification, with every feature a categorical (and interactions!)</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:3%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/data-science-bowl-2019" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/16531/logos/thumb76_76.png?t=2019-10-17-19-14-59"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">2019 Data Science Bowl</div>
+          <div class="competition-brief">Uncover the factors to help measure how young children learn</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:3%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/freesound-audio-tagging-2019" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/10700/logos/thumb76_76.png?t=2019-03-08-16-57-45"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Freesound Audio Tagging 2019</div>
+          <div class="competition-brief">Automatically recognize sounds and apply tags of varying natures</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:2%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/recognizing-faces-in-the-wild" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/9992/logos/thumb76_76.png?t=2019-01-09-19-35-16"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Northeastern SMILE Lab - Recognizing Faces in the Wild</div>
+          <div class="competition-brief">Can you determine if two individuals are related?</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:2%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/severstal-steel-defect-detection" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/14241/logos/thumb76_76.png?t=2019-06-17-15-52-14"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Severstal: Steel Defect Detection</div>
+          <div class="competition-brief">Can you detect and classify defects in steel?</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:2%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/flower-classification-with-tpus" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/18278/logos/thumb76_76.png?t=2020-01-30-15-22-38"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">Flower Classification with TPUs</div>
+          <div class="competition-brief">Use TPUs to classify 104 types of flowers
+</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:1%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/career-con-2019" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/13242/logos/thumb76_76.png?t=2019-03-12-23-33-31"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">CareerCon 2019 - Help Navigate Robots </div>
+          <div class="competition-brief">Compete to get your resume in front of our sponsors</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:1%"></div>
+      </div>
+    </a>
+    
+    <a href="https://www.kaggle.com/c/tgs-salt-identification-challenge" class="list-group-item list-group-item-action">
+      <div class="row align-items-center">
+        <div class="col" style="max-width: 60px;">
+          <img src="https://storage.googleapis.com/kaggle-competitions/kaggle/10151/logos/thumb76_76.png?t=2018-07-16-22-08-04"
+          class="rounded" style="width: 50px; margin: -5px;">
+        </div>
+
+        <div class="col">
+          <div class="competition-title">TGS Salt Identification Challenge</div>
+          <div class="competition-brief">Segment salt deposits beneath the Earth&#39;s surface</div>
+        </div>
+      </div>
+    
+      <div class="progress" style="height:2px; position: relative; top: 13px; margin-left: -20px; margin-right: -20px;">
+        <div class="progress-bar bg-info" style="width:1%"></div>
+      </div>
+    </a>
+    
+  </div>
+</div>
+
+
+</body>
